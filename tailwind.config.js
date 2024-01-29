@@ -1,0 +1,41 @@
+module.exports = {
+  purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
+  darkMode: false, // or 'media' or 'class'
+  theme: {
+    extend: {
+      colors: {
+        primary: '#F4F4F4',
+        secondary: '#F5BC68',
+        highlight: '#E7E7E7',
+      },
+      screens: {
+        'max-2xl': {'max': '1535px'},
+        // => @media (max-width: 1535px) { ... }
+
+        'max-xl': {'max': '1279px'},
+        // => @media (max-width: 1279px) { ... }
+
+        'max-lg': {'max': '1023px'},
+        // => @media (max-width: 1023px) { ... }
+
+        'max-md': {'max': '767px'},
+        // => @media (max-width: 767px) { ... }
+
+        'max-sm': {'max': '639px'},
+        // => @media (max-width: 639px) { ... }
+
+        'max-xs': {'max': '475px'},
+
+        'xs': {'min': '476px'},
+
+        'max-header': {'max': '909px'},
+
+        'min-header': {'min': '910px'},
+      },
+    },
+  },
+  variants: {
+    extend: {},
+  },
+  plugins: [],
+}
