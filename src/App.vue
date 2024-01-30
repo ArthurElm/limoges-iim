@@ -1,7 +1,6 @@
 <script setup>
-//import HelloWorld from './components/HelloWorld.vue'
 import MainButton from './components/MainButton.vue'
-import LogoLimoges from './components/LogoLimoges.vue'
+import LogoLimoges from './components/logolimoges.vue'
 
 </script>
 
@@ -14,8 +13,11 @@ import LogoLimoges from './components/LogoLimoges.vue'
           <MainButton svgFileName="cart" :buttonState="2">Panier</MainButton>
         </div>
       </div>
-      <!-- 3D object -->
-      <div class=" h-[65vh] bg-white">
+      <!-- 3D object & patterns -->
+      <div class=" h-[65vh] bg-white relative">
+        <!-- 3D object & patterns -->
+        <!-- patterns -->
+        <div class="h-4/5 w-20 bg-highlight absolute right-0 top-1/2 -translate-y-1/2"></div>
       </div>
       <div class=" pt-8 w-4/6 m-auto flex justify-center">
         <MainButton svgFileName="capture" :buttonState="2">Capturer</MainButton>
