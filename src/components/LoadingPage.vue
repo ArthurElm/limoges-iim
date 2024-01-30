@@ -50,7 +50,7 @@
     color: transparent;
     -webkit-background-clip: text;
     background-clip: text;
-    animation: loadtext 1.5s infinite;
+    animation: loadtext 2s infinite;
 }
 
 .loading-bar {
@@ -61,7 +61,7 @@
     height: 10px;
     background-color: #00368D;
 
-    animation: loadingAnimation 1.5s infinite;
+    animation: loadingAnimation 2s infinite;
 }
 
 @keyframes loadtext {

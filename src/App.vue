@@ -8,7 +8,7 @@ onMounted(() => {
   // Délai de chargement
   setTimeout(() => {
     loading.value = false;
-  }, 1500);
+  }, 2000);
 });
 </script>
 
