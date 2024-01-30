@@ -1,18 +1,8 @@
 <template>
-  <div class="canvas">
-    <h1 class="text-7xl text-secondary text-center pt-80">LIMOGES</h1>
-    <button @click="changeTexture('/assets/textures/Tarelka-test.png')">
-      Décoration
-    </button>
-    <br />
-    <button @click="changeTexture('/assets/textures/Tarelka-lineFace.png')">
-      Line Face
-    </button>
-    <br />
-    <button @click="changeTexture('/assets/textures/Tarelka-ZIK.png')">
-      Basique
-    </button>
-    <canvas ref="canvasRef" />
+  <div class="canvas flex">
+    <canvas ref="canvasRef" class="canvas1" />
+
+    <Slider class="slider" @send-path="changeTexture" />
   </div>
 </template>
 
@@ -22,11 +12,13 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 
+import Slider from "./Slider.vue";
+
 const canvasRef = ref(null); // Référence au canvas
 
 let mainObject; // Variable pour référencer l'objet principal
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xcccccc);
+scene.background = new THREE.Color(0xffffff);
 
 const camera = new THREE.PerspectiveCamera(
   5,
@@ -42,6 +34,7 @@ const textureLoader = new THREE.TextureLoader();
 
 // Fonction pour changer la texture
 const changeTexture = (textures) => {
+  console.log(textures);
   if (mainObject) {
     const textureUrl = textures;
     textureLoader.load(textureUrl, function (newTexture) {
@@ -137,10 +130,8 @@ const initThreeJS = () => {
   controls.update();
   const devicePixelRatio = window.devicePixelRatio || 1; // To handle high pixel density displays
 
-  renderer.setSize(window.innerWidth / 2, window.innerHeight / 2);
+  renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(devicePixelRatio);
-
-  document.body.appendChild(renderer.domElement);
 
   const render = function () {
     requestAnimationFrame(render);
@@ -170,12 +161,12 @@ const initThreeJS = () => {
           // Chargement et application de la texture
 
           textureLoader.load(
-            "/assets/textures/Tarelka-test.png",
+            "/assets/textures/texture2.png",
             function (texture) {
               const material = new THREE.MeshStandardMaterial({
                 map: texture,
-                roughness: 0.5, // Ajustez selon besoin
-                metalness: 0.5, // Ajustez selon besoin
+                roughness: 0, // Ajustez selon besoin
+                metalness: 0, // Ajustez selon besoin
               });
               material.needsUpdate = true;
               object.traverse(function (child) {
@@ -205,3 +196,17 @@ const render = function () {
   renderer.render(scene, camera);
 };
 </script>
+
+<style scoped>
+.slider {
+  position: absolute;
+  top: 50%;
+  right: 10%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.canvas {
+  position: relative; /* ou 'absolute' */
+}
+</style>
