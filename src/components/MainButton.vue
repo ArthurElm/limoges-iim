@@ -1,6 +1,6 @@
 <template>
     <button
-        class="px-5 py-3 w-fit flex items-center justify-center"
+        class="px-8 py-3 w-fit flex items-center justify-center"
         :class="{
             'button-state-1': buttonState === 1,
             'button-state-2': buttonState === 2,
@@ -59,26 +59,34 @@ export default {
 </script>
 
 <style scoped>
+
+button{
+    transition: all .2s ease-in-out;
+    background: #00368d;
+    background: linear-gradient(to right, #0D57CE 50%, #00368D 50%);
+    background-size: 200% 100%;
+    background-position:right bottom;
+}
 .button-state-1 {
-  background-color: #00368d;
+  /*background-color: #00368d;*/
   color: #ffffff;
   border-radius: 200px;
 }
 
 .button-state-2 {
-  background-color: #00368d;
   color: #ffffff;
   border-radius: 200px;
 }
 
 .button-text{
     margin-left: 10px;
+    transition: all .2s ease-in-out;
 }
 
 .button-hover:hover {
-  background-color: #00368d;
   color: #ffffff;
   border-radius: 200px;
+  background-position:left bottom;
 }
 
 .button-state-3 {
