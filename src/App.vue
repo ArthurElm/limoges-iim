@@ -1,12 +1,22 @@
 <script setup>
-//import HelloWorld from './components/HelloWorld.vue'
+import LoadingPage from './components/LoadingPage.vue'
+import { ref, onMounted } from 'vue';
+
+const loading = ref(true);
+
+onMounted(() => {
+  // Délai de chargement
+  setTimeout(() => {
+    loading.value = false;
+  }, 3000);
+});
 </script>
 
 <template>
-  <div>
-    <h1 class="text-7xl text-secondary text-center pt-80">LIMOGES</h1>
-  </div>
-  <!--<HelloWorld msg="Vite + Vue" /> -->
+    <LoadingPage msg="Vite + Vue" v-if="loading" />
+    <div v-else>
+      Test redirection
+    </div>
 </template>
 
 <style scoped>
