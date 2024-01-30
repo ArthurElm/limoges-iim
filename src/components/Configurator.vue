@@ -1,7 +1,6 @@
 <template>
   <div class="canvas flex">
     <canvas ref="canvasRef" class="canvas1" />
-
     <Slider class="slider" @send-path="changeTexture" />
   </div>
 </template>
@@ -14,9 +13,9 @@ import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 
 import Slider from "./Slider.vue";
 
-const canvasRef = ref(null); // Référence au canvas
+const canvasRef = ref(null); // Reference to the canvas element
 
-let mainObject; // Variable pour référencer l'objet principal
+let mainObject; // Variable pour for reference to the main object
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0xffffff);
 
@@ -32,7 +31,7 @@ let controls;
 let currentTextureIndex = 0;
 const textureLoader = new THREE.TextureLoader();
 
-// Fonction pour changer la texture
+// Function for changing the texture
 const changeTexture = (textures) => {
   console.log(textures);
   if (mainObject) {
@@ -50,9 +49,8 @@ const changeTexture = (textures) => {
 };
 
 onMounted(() => {
-  // Assurez-vous que canvasRef est monté
   if (canvasRef.value) {
-    initThreeJS(); // Initialisation de Three.js
+    initThreeJS(); // Threejs init
   }
 });
 
@@ -78,8 +76,8 @@ const initThreeJS = () => {
       if (mainObject) {
         const deltaRotationQuaternion = new THREE.Quaternion().setFromEuler(
           new THREE.Euler(
-            toRadians(deltaMove.y * 1), // ajustez le facteur 1 si nécessaire
-            toRadians(deltaMove.x * 1), // ajustez le facteur 1 si nécessaire
+            toRadians(deltaMove.y * 1),
+            toRadians(deltaMove.x * 1),
             0,
             "XYZ"
           )
@@ -102,26 +100,26 @@ const initThreeJS = () => {
     isDragging = false;
   };
 
-  // Convertir degrés en radians
+  // Conver degrees to radians
   const toRadians = (angle) => {
     return angle * (Math.PI / 180);
   };
 
-  // Ajouter des écouteurs d'événements pour la souris
+  // add eventlisteners for mouse events
   canvasRef.value.addEventListener("mousedown", onMouseDown, false);
   canvasRef.value.addEventListener("mouseup", onMouseUp, false);
   canvasRef.value.addEventListener("mousemove", onMouseMove, false);
 
-  // Création du projecteur
+  // Create a spot light
   const spotLight = new THREE.SpotLight(0xffffff); // Couleur blanche
 
-  //position de la caméra
+  // camera position
   camera.position.z = 5;
   camera.position.y = 5;
   camera.position.x = 5;
   camera.lookAt(new THREE.Vector3(0, 0, 0)); // Make the camera look at the point of origin
 
-  // Création du rendu
+  // Create renderer
   renderer = new THREE.WebGLRenderer({
     antialias: true,
     canvas: canvasRef.value,
@@ -136,55 +134,49 @@ const initThreeJS = () => {
   const render = function () {
     requestAnimationFrame(render);
     controls.update();
-    //   console.log(controls);
+
     renderer.render(scene, camera);
   };
-  // Activation des ombres dans le rendu
+  // Activate shadows in the renderer
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap; // Type d'ombre pour des bords plus doux
 
-  // Création du loader pour les textures
+  // Create loader for texttures
   const textureLoader = new THREE.TextureLoader();
 
-  // Création du loader pour les objets .obj
+  // Create loader for obj
   const objLoader = new OBJLoader();
 
-  // Chargement de l'objet .obj
-  objLoader.load(
-    "/Tarelka.obj", // Assurez-vous que ce chemin est correct
-    function (object) {
-      object.traverse(function (child) {
-        if (child.isMesh) {
-          // Sauvegarde de la référence de l'objet mesh pour une utilisation ultérieure
-          mainObject = object;
-          spotLight.target = mainObject; // Oriente le projecteur vers l'objet principal
-          // Chargement et application de la texture
+  // object chargement
+  objLoader.load("/Tarelka.obj", function (object) {
+    object.traverse(function (child) {
+      if (child.isMesh) {
+        // Save reference to the main object
+        mainObject = object;
+        spotLight.target = mainObject; // Rotate the spot light to the main object
+        // chargment texture
 
-          textureLoader.load(
-            "/assets/textures/texture2.png",
-            function (texture) {
-              const material = new THREE.MeshStandardMaterial({
-                map: texture,
-                roughness: 0, // Ajustez selon besoin
-                metalness: 0, // Ajustez selon besoin
-              });
-              material.needsUpdate = true;
-              object.traverse(function (child) {
-                if (child.isMesh) {
-                  child.material = material;
-                }
-              });
+        textureLoader.load("/assets/textures/texture2.png", function (texture) {
+          const material = new THREE.MeshStandardMaterial({
+            map: texture,
+            roughness: 0,
+            metalness: 0,
+          });
+          material.needsUpdate = true;
+          object.traverse(function (child) {
+            if (child.isMesh) {
+              child.material = material;
             }
-          );
-        }
-      });
-      scene.add(mainObject);
-    }
-  );
+          });
+        });
+      }
+    });
+    scene.add(mainObject);
+  });
 
-  const ambientLight = new THREE.AmbientLight(0xffffff, 1); // Couleur blanche, intensité à 0.5
+  const ambientLight = new THREE.AmbientLight(0xffffff, 1); // White color with full intensity
   scene.add(ambientLight);
-  // Ajout du projecteur à la scène
+  // Add the spot light to the scene
   scene.add(spotLight);
   // Start rendering the scene
   render();
