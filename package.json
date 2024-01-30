@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "shepherd.js": "^11.2.0",
     "vue": "^3.3.11"
   },
   "devDependencies": {

@@ -39,7 +39,7 @@ export default {
             }
         },
         handleMouseOut() {
-            if (this.state === 1) {
+            if (this.hoverState = true) {
                 this.state = 2;
                 this.hoverState = false;
             }

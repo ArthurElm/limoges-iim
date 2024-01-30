@@ -1,7 +1,8 @@
 <script setup>
 //import HelloWorld from './components/HelloWorld.vue'
-import LogoLimoges from './components/LogoLimoges.vue'
 import MainButton from './components/MainButton.vue'
+import LogoLimoges from './components/LogoLimoges.vue'
+
 </script>
 
 <template>
@@ -18,7 +19,7 @@ import MainButton from './components/MainButton.vue'
       </div>
       <div class=" pt-8 w-4/6 m-auto flex justify-center">
         <MainButton svgFileName="capture" :buttonState="2">Capturer</MainButton>
-        <MainButton svgFileName="check" :buttonState="2" class="mx-4">Valider</MainButton>
+        <MainButton svgFileName="check" :buttonState="2" class="mx-5">Valider</MainButton>
         <MainButton svgFileName="shop" :buttonState="2">Ajouter au panier</MainButton>
       </div>
     </div>
