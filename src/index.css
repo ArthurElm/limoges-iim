@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body{
+    background-color: #e5e5f7;
+    background-image:  repeating-linear-gradient(45deg, rgba(211, 211, 213, 0.1) 25%, transparent 25%, transparent 75%, rgba(211, 211, 213, 0.1) 75%, rgba(211, 211, 213, 0.1)), repeating-linear-gradient(45deg, rgba(211, 211, 213, 0.1) 25%, #e5e5f7 25%, rgba(229, 229, 247, 0.1) 75%, rgba(212, 212, 214, 0.1) 75%, rgba(211, 211, 213, 0.1));
+    background-position: 0 0, 7px 7px;
+    background-size: 14px 14px;
+
+}
