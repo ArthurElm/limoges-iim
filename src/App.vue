@@ -1,4 +1,5 @@
 <script setup>
+
 import MainButton from './components/MainButton.vue'
 import LogoLimoges from './components/logolimoges.vue'
 
@@ -27,8 +28,6 @@ import LogoLimoges from './components/logolimoges.vue'
     </div>
   </div>
   <!--<HelloWorld msg="Vite + Vue" /> -->
-
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
