@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 1875.26 4588.24"
     id="background-svg"
+    class="w-screen absolute top-2/4"
   >
     <path
       id="line"
@@ -44,19 +45,4 @@ document.addEventListener("DOMContentLoaded", () => {
   </div>
 </template>
 
-<style scoped>
-.body {
-  background-color: #888;
-}
-
-.ladiv {
-  height: 2000px;
-  background: #f1f1f1;
-}
-
-#background-svg {
-  position: absolute;
-  top: 50%;
-  width: 100vw;
-}
-</style>
+<style scoped></style>
