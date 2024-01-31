@@ -4,6 +4,7 @@ import LogoLimoges from "./components/logolimoges.vue";
 import Configurator from "./components/Configurator.vue";
 import LoadingPage from "./components/LoadingPage.vue";
 import { ref, onMounted } from "vue";
+import LandingScreen from "./components/LandingScreen.vue"
 
 const loading = ref(true);
 
@@ -40,6 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
     v-if="loading"
     :class="{ loadinbgPage: loading }"
   />
+  <LandingScreen />
   <div class="px-12 py-12">
     <svg
       xmlns="http://www.w3.org/2000/svg"
