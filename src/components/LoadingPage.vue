@@ -26,6 +26,15 @@
         />
       </svg>
     </div>
+
+    <figure class="swing">
+        <img src="https://www.destination-limoges.com/app/uploads/2022/04/porcelaine.jpg" width="300px">
+    </figure>  
+
+    <figure class="swing2">
+        <img src="https://www.hotel-ventes-giraudeau-tours.fr/wp-content/uploads/sites/9225/2017/02/354-1-e1594652365992.jpg" width="300px">
+    </figure>  
+
   </div>
 </template>
 
@@ -118,5 +127,87 @@
 
 .limoges-map-container path {
   animation: fillStrokeAnimation 2s ease forwards;
+}
+
+/* Swing IMG */
+.swing {
+    position: absolute;
+    top: 120px;
+    left: 60px;
+    animation: swing ease-in-out 1s infinite alternate;
+    transform-origin: center -20px;
+    float:left;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+}
+.swing img {
+    border: 5px solid #f8f8f8;
+    display: block;
+}
+.swing:after{
+    content: '';
+    position: absolute;  
+    width: 20px; height: 20px;  
+    border: 1px solid #999;
+    top: 0; left: 50%;
+    z-index: 0;
+    border-bottom: none;
+    border-right: none;
+    transform: rotate(45deg);
+}
+/* nail */
+.swing:before{
+    content: '';
+    position: absolute;
+    width: 5px; height: 5px;
+    top: -14px;left: 54%;
+    z-index: 5;
+    border-radius: 50% 50%;
+    background: #000;
+}
+ 
+@keyframes swing {
+    0% { transform: rotate(3deg); }
+    100% { transform: rotate(-3deg); }
+}
+
+/* Swing 2 */
+.swing2 {
+    position: absolute;
+    bottom: 100px;
+    right: 120px;
+    animation: swing ease-in-out 1s infinite alternate;
+    transform-origin: center -20px;
+    float:left;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+}
+.swing2 img {
+    border: 5px solid #f8f8f8;
+    display: block;
+}
+.swing2:after{
+    content: '';
+    position: absolute;  
+    width: 20px; height: 20px;  
+    border: 1px solid #999;
+    top: 0; left: 50%;
+    z-index: 0;
+    border-bottom: none;
+    border-right: none;
+    transform: rotate(45deg);
+}
+/* nail */
+.swing2:before{
+    content: '';
+    position: absolute;
+    width: 5px; height: 5px;
+    top: -14px;left: 54%;
+    z-index: 5;
+    border-radius: 50% 50%;
+    background: #000;
+}
+ 
+@keyframes swing {
+    0% { transform: rotate(3deg); }
+    100% { transform: rotate(-3deg); }
 }
 </style>
