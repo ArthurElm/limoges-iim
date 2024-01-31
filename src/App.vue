@@ -3,6 +3,17 @@
 import MainButton from "./components/MainButton.vue";
 import LogoLimoges from "./components/logolimoges.vue";
 import Configurator from "./components/Configurator.vue";
+import LoadingPage from './components/LoadingPage.vue'
+import { ref, onMounted } from 'vue';
+
+const loading = ref(true);
+
+onMounted(() => {
+  // Délai de chargement
+  setTimeout(() => {
+    loading.value = false;
+  }, 2000);
+});
 
 document.addEventListener("DOMContentLoaded", () => {
   var path = document.getElementById("line")
@@ -26,6 +37,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <template>
   <div class="px-12 py-12">
+   <LoadingPage msg="Vite + Vue" v-if="loading" />
+   <div v-else>
+      Test redirection
+    </div>
   <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 1875.26 4588.24"
