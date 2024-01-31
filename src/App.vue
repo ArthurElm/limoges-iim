@@ -1,10 +1,9 @@
 <script setup>
-
 import MainButton from "./components/MainButton.vue";
 import LogoLimoges from "./components/logolimoges.vue";
 import Configurator from "./components/Configurator.vue";
-import LoadingPage from './components/LoadingPage.vue'
-import { ref, onMounted } from 'vue';
+import LoadingPage from "./components/LoadingPage.vue";
+import { ref, onMounted } from "vue";
 
 const loading = ref(true);
 
@@ -16,32 +15,33 @@ onMounted(() => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  var path = document.getElementById("line")
-  var length = path.getTotalLength()
-  path.style.strokeDasharray = length
-  path.style.strokeDashoffset = length
+  var path = document.getElementById("line");
+  var length = path.getTotalLength();
+  path.style.strokeDasharray = length;
+  path.style.strokeDashoffset = length;
 
-  window.addEventListener("scroll", scrollDraw)
+  window.addEventListener("scroll", scrollDraw);
 
   function scrollDraw() {
     var scrollpercent =
       (document.body.scrollTop + document.documentElement.scrollTop) /
       (document.documentElement.scrollHeight -
-        document.documentElement.clientHeight)
+        document.documentElement.clientHeight);
 
-    var draw = length * scrollpercent
-    path.style.strokeDashoffset = length - draw * 1.5
+    var draw = length * scrollpercent;
+    path.style.strokeDashoffset = length - draw * 1.5;
   }
-})
+});
 </script>
 
 <template>
+  <LoadingPage
+    msg="Vite + Vue"
+    v-if="loading"
+    :class="{ loadinbgPage: loading }"
+  />
   <div class="px-12 py-12">
-   <LoadingPage msg="Vite + Vue" v-if="loading" />
-   <div v-else>
-      Test redirection
-    </div>
-  <svg
+    <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 1875.26 4588.24"
       id="background-svg"
@@ -83,4 +83,13 @@ document.addEventListener("DOMContentLoaded", () => {
   <!--<HelloWorld msg="Vite + Vue" /> -->
 </template>
 
-<style scoped></style>
+<style scoped>
+.loadinbgPage {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  z-index: 10000000;
+  background-color: #fff;
+  overflow: hidden;
+}
+</style>
