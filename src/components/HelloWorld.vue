@@ -1,4 +1,5 @@
 <script setup>
+
 import Configurator from "./Configurator.vue";
 import { ref } from "vue";
 
@@ -13,11 +14,7 @@ const count = ref(0);
 </script>
 
 <template>
-  <Configurator />
+
 </template>
 
-<style scoped>
-.read-the-docs {
-  color: #888;
-}
-</style>
+<style scoped></style>
