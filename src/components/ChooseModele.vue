@@ -9,10 +9,15 @@
           width="auto"
           height="auto"
           alt="Objet de poterie 1"
+          @click="sendPath('/Tarelka.obj')"
         />
       </SplideSlide>
       <SplideSlide>
-        <img src="../assets/slider/texture2.jpg" alt="Objet de poterie 2" />
+        <img
+          src="../assets/slider/texture2.jpg"
+          alt="Objet de poterie 2"
+          @click="sendPath('/mug.obj')"
+        />
       </SplideSlide>
       <!-- Ajoutez autant de SplideSlide que nécessaire pour vos images -->
     </Splide>
@@ -39,6 +44,13 @@ export default {
         // Ajoutez d'autres options selon vos besoins
       },
     };
+  },
+
+  methods: {
+    sendPath(path) {
+      // use a fonction in the parent component with the ref
+      this.$emit("send-modele", path);
+    },
   },
 };
 </script>
