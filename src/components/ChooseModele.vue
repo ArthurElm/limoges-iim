@@ -17,7 +17,7 @@
       <!-- Ajoutez autant de SplideSlide que nécessaire pour vos images -->
     </Splide>
     <MainButton :buttonState="3" @click="sendPath"
-      >Ajouter au panier</MainButton
+      >Choisir</MainButton
     >
   </div>
 </template>
@@ -49,11 +49,15 @@ const sendPath = () => {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 img {
   display: block;
   margin: auto;
-  width: 15%;
+  width: 200px;
+}
+
+.splide {
+  width: 350px;
 }
 
 .splide__arrow {
@@ -90,20 +94,24 @@ img {
 }
 
 .slider-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  max-width: 600px;
+  gap: 40px;
+  max-width: 90%;
   margin: 0 auto;
-  padding: 20px;
+  padding: 80px 50px;
   background-color: #fff;
-}
 
-.slider-container h1 {
-  font-size: 24px;
-  margin-bottom: 16px;
-}
+  h1 {
+    font-size: 32px;
+    font-weight: bold;
+  }
 
-.slider-container p {
-  margin-bottom: 24px;
+  p {
+    font-size: 20px;
+  }
 }
 
 .splide__arrow {

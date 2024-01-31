@@ -38,8 +38,7 @@ border-radius: 200px;
 }
 
 .button-text {
-margin-left: 10px;
-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
 }
 
 .skip-button{

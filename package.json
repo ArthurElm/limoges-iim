@@ -9,8 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "shepherd.js": "^11.2.0",
     "@splidejs/vue-splide": "^0.6.12",
+    "sass": "^1.70.0",
+    "shepherd.js": "^11.2.0",
     "three": "^0.160.1",
     "vue": "^3.3.11"
   },
