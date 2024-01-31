@@ -2,7 +2,7 @@
   <div class="slider-container">
     <h1>Bienvenue dans l'atelier de porcelaine virtuel de Limoges !</h1>
     <p>Commencez par choisir l'objet de poterie que vous souhaitez créer.</p>
-    <Splide :options="splideOptions" @moved="updateModelPath">
+    <Splide :options="splideOptions" ref="splideRef">
       <SplideSlide>
         <img
           src="../assets/slider/texture3.jpg"
@@ -16,7 +16,7 @@
       </SplideSlide>
       <!-- Ajoutez autant de SplideSlide que nécessaire pour vos images -->
     </Splide>
-    <MainButton :buttonState="3" @click="sendPath(currentModelPath)"
+    <MainButton :buttonState="3" @click="sendPath"
       >Ajouter au panier</MainButton
     >
   </div>
@@ -29,6 +29,8 @@ import MainButton from "./MainButton.vue";
 import "@splidejs/vue-splide/css";
 
 const emit = defineEmits(["send-modele"]);
+const splideRef = ref(null); // Référence à l'instance de Splide
+const modelPaths = ["/Tarelka.obj", "/mug.obj"]; // Chemins de vos modèles
 
 const splideOptions = ref({
   type: "fade",
@@ -38,18 +40,12 @@ const splideOptions = ref({
   // Ajoutez d'autres options selon vos besoins
 });
 
-const modelPaths = ["/Tarelka.obj", "/mug.obj"]; // Chemins de vos modèles
-const currentModelPath = ref(modelPaths[0]); // Chemin du modèle actuel
-
-const updateModelPath = (splide) => {
-  console.log(splide);
-  const currentIndex = splide.index; // Obtenez l'index de la slide actuelle
-  currentModelPath.value = modelPaths[currentIndex]; // Mettez à jour le chemin du modèle
-};
-
-const sendPath = (path) => {
-  // use a fonction in the parent component with the ref
-  emit("send-modele", path);
+const sendPath = () => {
+  if (splideRef.value && splideRef.value.splide) {
+    const currentIndex = splideRef.value.splide.index;
+    const path = modelPaths[currentIndex];
+    emit("send-modele", path);
+  }
 };
 </script>
 
