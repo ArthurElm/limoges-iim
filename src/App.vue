@@ -3,9 +3,11 @@ import MainButton from "./components/MainButton.vue";
 import LogoLimoges from "./components/logolimoges.vue";
 import Configurator from "./components/Configurator.vue";
 import LoadingPage from "./components/LoadingPage.vue";
+import ChooseModele from "./components/ChooseModele.vue";
 import { ref, onMounted } from "vue";
 
 const loading = ref(true);
+const modele = ref("/Tarelka.obj");
 
 onMounted(() => {
   // Délai de chargement
@@ -13,6 +15,10 @@ onMounted(() => {
     loading.value = false;
   }, 2000);
 });
+
+const sendModele = (path) => {
+  modele.value = path;
+};
 
 document.addEventListener("DOMContentLoaded", () => {
   var path = document.getElementById("line");
@@ -53,6 +59,9 @@ document.addEventListener("DOMContentLoaded", () => {
       />
     </svg>
     <div class="main">
+      <div class="flex justify-center items-center">
+        <ChooseModele @send-modele="sendModele" />
+      </div>
       <div class="flex justify-between items-center mb-8">
         <LogoLimoges />
         <div>
@@ -62,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <!-- 3D object & patterns -->
       <div class="h-[65vh] relative configurator" style="overflow-y: hidden">
         <!-- 3D object & patterns -->
-        <Configurator />
+        <Configurator :modele="modele" />
       </div>
       <div class="actions-buttons pt-8 w-4/6 m-auto flex justify-center">
         <MainButton svgFileName="capture" :buttonState="2">Capturer</MainButton>
@@ -214,5 +223,4 @@ export default {
 .background-svg {
   z-index: -1;
 }
-
 </style>

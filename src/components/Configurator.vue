@@ -6,34 +6,54 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 
 import Slider from "./SliderV.vue";
 
+const props = defineProps({
+  modele: String,
+});
+
+const modele = ref(props.modele);
 const canvasRef = ref(null); // Reference to the canvas element
-
 let mainObject; // Variable pour for reference to the main object
+let renderer;
+let controls;
+let currentTextureIndex = 0;
 const scene = new THREE.Scene();
-// scene background color transparent
-
+const ambientLight = new THREE.AmbientLight(0xffffff, 1); // White color with full intensity
+// Create a spot light
+const spotLight = new THREE.SpotLight(0xffffff); // Couleur blanche
 const camera = new THREE.PerspectiveCamera(
   5,
   window.innerWidth / window.innerHeight,
   0.1,
   1000
 );
-
-let renderer;
-let controls;
-let currentTextureIndex = 0;
 const textureLoader = new THREE.TextureLoader();
+
+onMounted(() => {
+  if (canvasRef.value) {
+    initThreeJS(); // Threejs init
+  }
+});
+
+watch(
+  () => props.modele,
+  (newModele, oldModele) => {
+    modele.value = newModele;
+    scene.remove(mainObject);
+    scene.remove(ambientLight);
+    scene.remove(spotLight);
+    initThreeJS();
+  }
+);
 
 // Function for changing the texture
 const changeTexture = (textures) => {
-  console.log(textures);
   if (mainObject) {
     const textureUrl = textures;
     textureLoader.load(textureUrl, function (newTexture) {
@@ -47,12 +67,6 @@ const changeTexture = (textures) => {
     });
   }
 };
-
-onMounted(() => {
-  if (canvasRef.value) {
-    initThreeJS(); // Threejs init
-  }
-});
 
 const initThreeJS = () => {
   // rotate obj
@@ -110,9 +124,6 @@ const initThreeJS = () => {
   canvasRef.value.addEventListener("mouseup", onMouseUp, false);
   canvasRef.value.addEventListener("mousemove", onMouseMove, false);
 
-  // Create a spot light
-  const spotLight = new THREE.SpotLight(0xffffff); // Couleur blanche
-
   // camera position
   camera.position.z = 3;
   camera.position.y = 3;
@@ -150,13 +161,11 @@ const initThreeJS = () => {
   const objLoader = new OBJLoader();
 
   // object chargement
-  objLoader.load("/Tarelka.obj", function (object) {
+  objLoader.load(modele.value, function (object) {
+    mainObject = object;
     object.traverse(function (child) {
       if (child.isMesh) {
         // Save reference to the main object
-        mainObject = object;
-        spotLight.target = mainObject; // Rotate the spot light to the main object
-        // chargment texture
 
         textureLoader.load("/assets/textures/texture2.png", function (texture) {
           const material = new THREE.MeshStandardMaterial({
@@ -173,10 +182,10 @@ const initThreeJS = () => {
         });
       }
     });
+    spotLight.target = mainObject; // Rotate the spot light to the main object
     scene.add(mainObject);
   });
 
-  const ambientLight = new THREE.AmbientLight(0xffffff, 1); // White color with full intensity
   scene.add(ambientLight);
   // Add the spot light to the scene
   scene.add(spotLight);
