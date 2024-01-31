@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     v-if="loading"
     :class="{ loadinbgPage: loading }"
   />
-  <div class="px-12 py-12">
+  <div class="px-12 py-12" v-else>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 1875.26 4588.24"
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="flex justify-between items-center mb-8">
         <LogoLimoges />
         <div>
-          <MainButton svgFileName="cart" :buttonState="2">Panier</MainButton>
+          <MainButton class="cart-button" svgFileName="cart" :buttonState="2">Panier</MainButton>
         </div>
       </div>
       <!-- 3D object & patterns -->
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <!-- 3D object & patterns -->
         <Configurator />
       </div>
-      <div class="pt-8 w-4/6 m-auto flex justify-center">
+      <div class="actions-buttons pt-8 w-4/6 m-auto flex justify-center">
         <MainButton svgFileName="capture" :buttonState="2">Capturer</MainButton>
         <MainButton svgFileName="check" :buttonState="2" class="mx-5"
           >Valider</MainButton
@@ -77,7 +77,125 @@ document.addEventListener("DOMContentLoaded", () => {
   </div>
   <!--<HelloWorld msg="Vite + Vue" /> -->
 </template>
+<script>
 
+import Shepherd from 'shepherd.js';
+
+export default {
+  data(){
+      return {
+        tour: null
+      }
+    },
+  methods:{
+    startTutorial() {
+      const tour = new Shepherd.Tour({
+        useModalOverlay: true,
+        defaultStepOptions: {
+          classes: 'shepherd-theme-arrows',
+          scrollTo: false,
+        }
+      });
+      //step 1
+      tour.addStep({
+        id: 'discover-limoges',
+        arrow: true,
+        title: 'Découvrez Limoges',
+        text: "Envie d'en savoir plus sur la magnifique ville de Limoges et son histoire ? Cliquez ici pour découvrir et explorer cette ville captivante.",
+        attachTo: {
+          element: '.logo-limoges',
+          on: 'right',
+        },
+        tetherOptions: {
+          target: '.inner'
+        },
+        buttons: [
+          {
+            text: 'Passer le guide',
+            action: tour.cancel,
+            classes: 'skip-button',
+          },
+          {
+            text: 'Suivant',
+            action: tour.next,
+            classes: 'main-button px-8 py-3 ',
+          },
+        ],
+      });
+      //step 2
+      tour.addStep({
+        id: 'actions-buttons-step',
+        title: 'Capturer, enregistrer, acheter',
+        text: 'Vous pouvez, via ces actions, donner vie à votre création.',
+        attachTo: {
+          element: '.actions-buttons',
+          on: 'top',
+        },
+        buttons: [
+          {
+            text: 'Passer le guide',
+            action: tour.cancel,
+            classes: 'skip-button',
+          },
+          {
+            text: 'Suivant',
+            action: tour.next,
+            classes: 'main-button px-8 py-3 ',
+          },
+        ],
+      });
+
+      //step 3
+      tour.addStep({
+        id: 'buy-pottery',
+        title: 'Acheter',
+        text: "Cliquez sur le bouton 'Vers le Panier' pour finaliser votre achat et voir votre poterie prendre forme dans le monde réel.",
+        attachTo: {
+          element: '.cart-button',
+          on: 'left',
+        },
+        buttons: [
+          {
+            text: 'Passer le guide',
+            action: tour.cancel,
+            classes: 'skip-button',
+          },
+          {
+            text: 'Suivant',
+            action: tour.next,
+            classes: 'main-button px-8 py-3',
+          },
+        ],
+      });
+
+      //step 4
+      tour.addStep({
+        id: 'choose-pattern',
+        title: 'Choisir un motif',
+        text: 'Vous pouvez modifier le motif de votre poterie à votre guise.',
+        attachTo: {
+          element: '.slider',
+          on: 'left',
+        },
+        buttons: [
+          {
+            text: "C'est parti !",
+            action: tour.complete,
+            classes: 'main-button px-8 py-3',
+          },
+        ],
+      });
+
+      tour.start();
+    }
+  },
+  mounted() {
+    setTimeout(() => {
+      this.startTutorial();
+    }, 2000);
+  },
+}
+</script>
 <style scoped>
 .loadinbgPage {
   position: fixed;
