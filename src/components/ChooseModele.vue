@@ -16,15 +16,13 @@
       </SplideSlide>
       <!-- Ajoutez autant de SplideSlide que nécessaire pour vos images -->
     </Splide>
-    <MainButton :buttonState="3" @click="sendPath"
-      >Choisir</MainButton
-    >
+    <MainButton :buttonState="3" @click="sendPath">Choisir</MainButton>
   </div>
 </template>
 
 <script setup>
 import { Splide, SplideSlide } from "@splidejs/vue-splide";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import MainButton from "./MainButton.vue";
 import "@splidejs/vue-splide/css";
 
@@ -38,6 +36,14 @@ const splideOptions = ref({
   pagination: false,
   arrows: true,
   // Ajoutez d'autres options selon vos besoins
+});
+
+onMounted(() => {
+  let arrow = document.querySelectorAll(".splide__arrow > svg");
+
+  arrow.forEach((e) => {
+    e.style.fill = "#0d57ce";
+  });
 });
 
 const sendPath = () => {
@@ -61,7 +67,18 @@ img {
 }
 
 .splide__arrow {
-  background-color: #0000ff;
+  svg {
+    fill: #0d57ce;
+  }
+}
+
+h1,
+p {
+  color: #fff;
+}
+
+.splide__arrow {
+  cologround-color: #0d57ce;
   color: white;
   border: none;
   width: 40px;
@@ -102,7 +119,7 @@ img {
   max-width: 90%;
   margin: 0 auto;
   padding: 80px 50px;
-  background-color: #fff;
+  border: 1px solid #0d57ce;
 
   h1 {
     font-size: 32px;
@@ -115,7 +132,7 @@ img {
 }
 
 .splide__arrow {
-  background-color: #0000ff;
+  cologround-color: #0d57ce;
   color: white;
   border: none;
   width: 40px;
@@ -125,7 +142,7 @@ img {
 
 .choose-button {
   margin-top: 20px;
-  background-color: #0000ff;
+  cologround-color: #0d57ce;
   color: white;
   border: none;
   padding: 10px 20px;
