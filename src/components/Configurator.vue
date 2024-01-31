@@ -1,6 +1,6 @@
 <template>
   <div class="canvas flex">
-    <canvas ref="canvasRef" class="canvas1" />
+    <canvas ref="canvasRef" class="canvasContainer" />
     <Slider class="slider" @send-path="changeTexture" />
   </div>
 </template>
@@ -114,9 +114,9 @@ const initThreeJS = () => {
   const spotLight = new THREE.SpotLight(0xffffff); // Couleur blanche
 
   // camera position
-  camera.position.z = 5;
-  camera.position.y = 5;
-  camera.position.x = 5;
+  camera.position.z = 3;
+  camera.position.y = 3;
+  camera.position.x = 3;
   camera.lookAt(new THREE.Vector3(0, 0, 0)); // Make the camera look at the point of origin
 
   // Create renderer
@@ -190,6 +190,10 @@ const render = function () {
 </script>
 
 <style scoped>
+.canvas {
+  margin-top: -10%;
+  margin-left: -4%;
+}
 .slider {
   position: absolute;
   top: 50%;

@@ -1,8 +1,7 @@
 <script setup>
-
-import MainButton from './components/MainButton.vue'
-import LogoLimoges from './components/logolimoges.vue'
-
+import MainButton from "./components/MainButton.vue";
+import LogoLimoges from "./components/logolimoges.vue";
+import Configurator from "./components/Configurator.vue";
 </script>
 
 <template>
@@ -15,15 +14,22 @@ import LogoLimoges from './components/logolimoges.vue'
         </div>
       </div>
       <!-- 3D object & patterns -->
-      <div class=" h-[65vh] bg-white relative">
+      <div class="h-[65vh] bg-white relative" style="overflow-y: hidden">
         <!-- 3D object & patterns -->
+        <Configurator />
         <!-- patterns -->
-        <div class="h-4/5 w-20 bg-highlight absolute right-0 top-1/2 -translate-y-1/2"></div>
+        <div
+          class="h-4/5 w-20 bg-highlight absolute right-0 top-1/2 -translate-y-1/2"
+        ></div>
       </div>
-      <div class=" pt-8 w-4/6 m-auto flex justify-center">
+      <div class="pt-8 w-4/6 m-auto flex justify-center">
         <MainButton svgFileName="capture" :buttonState="2">Capturer</MainButton>
-        <MainButton svgFileName="check" :buttonState="2" class="mx-5">Valider</MainButton>
-        <MainButton svgFileName="shop" :buttonState="2">Ajouter au panier</MainButton>
+        <MainButton svgFileName="check" :buttonState="2" class="mx-5"
+          >Valider</MainButton
+        >
+        <MainButton svgFileName="shop" :buttonState="2"
+          >Ajouter au panier</MainButton
+        >
       </div>
     </div>
   </div>
