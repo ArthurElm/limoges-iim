@@ -11,13 +11,13 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 
-import Slider from "./Slider.vue";
+import Slider from "./SliderV.vue";
 
 const canvasRef = ref(null); // Reference to the canvas element
 
 let mainObject; // Variable pour for reference to the main object
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xffffff);
+// scene background color transparent
 
 const camera = new THREE.PerspectiveCamera(
   5,
@@ -123,10 +123,12 @@ const initThreeJS = () => {
   renderer = new THREE.WebGLRenderer({
     antialias: true,
     canvas: canvasRef.value,
+    alpha: true,
   });
   controls = new OrbitControls(camera, renderer.domElement);
   controls.update();
   const devicePixelRatio = window.devicePixelRatio || 1; // To handle high pixel density displays
+  renderer.setClearColor(0x000000, 0); // the default
 
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(devicePixelRatio);

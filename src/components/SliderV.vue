@@ -60,6 +60,6 @@ const sendPath = (textures) => {
 
 <style scoped>
 .slider {
-  margin: auto;
+  margin: auto -5% auto auto;
 }
 </style>

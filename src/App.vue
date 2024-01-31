@@ -61,13 +61,9 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       </div>
       <!-- 3D object & patterns -->
-      <div class="h-[65vh] bg-white relative" style="overflow-y: hidden">
+      <div class="h-[65vh] relative configurator" style="overflow-y: hidden">
         <!-- 3D object & patterns -->
         <Configurator />
-        <!-- patterns -->
-        <div
-          class="h-4/5 w-20 bg-highlight absolute right-0 top-1/2 -translate-y-1/2"
-        ></div>
       </div>
       <div class="pt-8 w-4/6 m-auto flex justify-center">
         <MainButton svgFileName="capture" :buttonState="2">Capturer</MainButton>
@@ -88,8 +84,15 @@ document.addEventListener("DOMContentLoaded", () => {
   position: fixed;
   height: 100vh;
   width: 100vw;
-  z-index: 10000000;
+  z-index: 10;
   background-color: #fff;
   overflow: hidden;
 }
+
+.configurator {
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+
 </style>
