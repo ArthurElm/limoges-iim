@@ -1,9 +1,104 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body{
-    background-color: #F7F7FF;
-    background-image: radial-gradient(#dce4f3 0.4px, #F7F7FF 0.4px);
-    background-size: 8px 8px;
+body {
+  background-color: #f7f7ff;
+  background-image: radial-gradient(#252525 0.4px, #0e0e0e 0.4px);
+  background-size: 8px 8px;
+  font-family: "Work Sans", sans-serif;
+}
+
+/*Buttons Style*/
+.main-button {
+  color: #ffffff;
+  transition: all 0.4s ease-in-out;
+  background: linear-gradient(to right, #0d57ce 50%, #00368d 50%);
+  background-size: 200% 100%;
+  background-position: right bottom;
+  border-radius: 200px;
+}
+
+.button-state-2 {
+  border-radius: 200px;
+}
+
+.button-state-2 .button-text {
+  display: none;
+}
+
+.button-state-2:hover {
+  background-position: left bottom;
+}
+
+.button-state-2:hover .button-text {
+  display: block;
+}
+
+.button-text {
+  transition: all 0.2s ease-in-out;
+}
+
+.skip-button {
+  text-decoration: underline;
+}
+
+/*shepherd style*/
+
+.shepherd-element {
+  max-width: 450px;
+  background: #fff;
+  padding: 20px;
+  margin: 20px;
+  z-index: 10;
+}
+
+.shepherd-modal-overlay-container {
+  top: 50px; /* Ajustez cette valeur en fonction de votre mise en page */
+}
+
+.shepherd-title {
+  color: #00368d;
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.shepherd-text {
+  font-size: 0.9rem;
+}
+
+.shepherd-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  align-items: center;
+}
+
+.shepherd-footer .main-button:hover {
+  background-position: left bottom;
+}
+
+.shepherd-overlay {
+  background-color: rgba(
+    0,
+    54,
+    141,
+    0.7
+  ); /* Couleur semi-transparente à personnaliser selon vos besoins */
+}
+
+.shepherd-modal-overlay-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 4;
+}
+
+.shepherd-modal-overlay-container.shepherd-modal-is-visible path {
+  fill: rgba(0, 0, 0, 0.36);
+  transform: scale(1);
 }
