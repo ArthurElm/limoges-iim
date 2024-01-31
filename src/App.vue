@@ -44,8 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 1875.26 4588.24"
-      id="background-svg"
-      class="w-screen absolute top-2/4"
+      class="background-svg w-screen absolute top-2/4"
     >
       <path
         id="line"
@@ -94,5 +93,8 @@ document.addEventListener("DOMContentLoaded", () => {
   border-radius: 10px;
 }
 
+.background-svg {
+  z-index: -1;
+}
 
 </style>
