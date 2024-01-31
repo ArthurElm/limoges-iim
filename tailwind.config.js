@@ -4,9 +4,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#F4F4F4',
-        secondary: '#F5BC68',
-        highlight: '#E7E7E7',
+        primary: '#F7F7FF',
+        secondary: '#ffffff',
+        highlight: '#00368D',
       },
       screens: {
         'max-2xl': {'max': '1535px'},
