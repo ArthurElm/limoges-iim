@@ -3,6 +3,7 @@ import MainButton from "./components/MainButton.vue";
 import LogoLimoges from "./components/logolimoges.vue";
 import Configurator from "./components/Configurator.vue";
 import LoadingPage from "./components/LoadingPage.vue";
+import ChooseModele from "./components/ChooseModele.vue";
 import { ref, onMounted } from "vue";
 
 const loading = ref(true);
@@ -53,6 +54,9 @@ document.addEventListener("DOMContentLoaded", () => {
       />
     </svg>
     <div class="main">
+      <div class="flex justify-center items-center">
+        <ChooseModele />
+      </div>
       <div class="flex justify-between items-center mb-8">
         <LogoLimoges />
         <div>
