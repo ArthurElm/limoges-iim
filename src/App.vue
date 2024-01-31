@@ -18,7 +18,6 @@ onMounted(() => {
 
 const sendModele = (path) => {
   modele.value = path;
-  console.log(modele.value);
 };
 
 document.addEventListener("DOMContentLoaded", () => {

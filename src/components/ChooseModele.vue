@@ -2,56 +2,54 @@
   <div class="slider-container">
     <h1>Bienvenue dans l'atelier de porcelaine virtuel de Limoges !</h1>
     <p>Commencez par choisir l'objet de poterie que vous souhaitez créer.</p>
-    <Splide :options="splideOptions">
+    <Splide :options="splideOptions" @moved="updateModelPath">
       <SplideSlide>
         <img
           src="../assets/slider/texture3.jpg"
           width="auto"
           height="auto"
           alt="Objet de poterie 1"
-          @click="sendPath('/Tarelka.obj')"
         />
       </SplideSlide>
       <SplideSlide>
-        <img
-          src="../assets/slider/texture2.jpg"
-          alt="Objet de poterie 2"
-          @click="sendPath('/mug.obj')"
-        />
+        <img src="../assets/slider/texture2.jpg" alt="Objet de poterie 2" />
       </SplideSlide>
       <!-- Ajoutez autant de SplideSlide que nécessaire pour vos images -->
     </Splide>
-    <button class="choose-button">Choisir</button>
+    <MainButton :buttonState="3" @click="sendPath(currentModelPath)"
+      >Ajouter au panier</MainButton
+    >
   </div>
 </template>
 
-<script>
+<script setup>
 import { Splide, SplideSlide } from "@splidejs/vue-splide";
+import { ref } from "vue";
+import MainButton from "./MainButton.vue";
 import "@splidejs/vue-splide/css";
 
-export default {
-  components: {
-    Splide,
-    SplideSlide,
-  },
-  data() {
-    return {
-      splideOptions: {
-        type: "fade",
-        rewind: true,
-        pagination: false,
-        arrows: true,
-        // Ajoutez d'autres options selon vos besoins
-      },
-    };
-  },
+const emit = defineEmits(["send-modele"]);
 
-  methods: {
-    sendPath(path) {
-      // use a fonction in the parent component with the ref
-      this.$emit("send-modele", path);
-    },
-  },
+const splideOptions = ref({
+  type: "fade",
+  rewind: true,
+  pagination: false,
+  arrows: true,
+  // Ajoutez d'autres options selon vos besoins
+});
+
+const modelPaths = ["/Tarelka.obj", "/mug.obj"]; // Chemins de vos modèles
+const currentModelPath = ref(modelPaths[0]); // Chemin du modèle actuel
+
+const updateModelPath = (splide) => {
+  console.log(splide);
+  const currentIndex = splide.index; // Obtenez l'index de la slide actuelle
+  currentModelPath.value = modelPaths[currentIndex]; // Mettez à jour le chemin du modèle
+};
+
+const sendPath = (path) => {
+  // use a fonction in the parent component with the ref
+  emit("send-modele", path);
 };
 </script>
 

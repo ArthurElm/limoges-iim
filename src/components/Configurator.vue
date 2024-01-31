@@ -44,7 +44,6 @@ onMounted(() => {
 watch(
   () => props.modele,
   (newModele, oldModele) => {
-    console.log("Nouveau modèle: ", newModele, "Ancien modèle: ", oldModele);
     modele.value = newModele;
     scene.remove(mainObject);
     scene.remove(ambientLight);
@@ -55,7 +54,6 @@ watch(
 
 // Function for changing the texture
 const changeTexture = (textures) => {
-  console.log(textures);
   if (mainObject) {
     const textureUrl = textures;
     textureLoader.load(textureUrl, function (newTexture) {
