@@ -1,17 +1,20 @@
 <script setup>
-import { ref } from "vue"
+
+import Configurator from "./Configurator.vue";
+import { ref } from "vue";
 
 defineProps({
   msg: String,
-})
-
-const count = ref(0)
+});
+const arr = [
+  "https://s3-us-west-2.amazonaws.com/s.cdpn.io/259155/THREE_crate1.jpg",
+  "https://s3-us-west-2.amazonaws.com/s.cdpn.io/259155/THREE_crate2.jpg",
+];
+const count = ref(0);
 </script>
 
 <template>
-  <div class="ladiv">
-    <h1 class="text-7xl text-secondary text-center pt-80">LIMOGES</h1>
-  </div>
+
 </template>
 
 <style scoped></style>
