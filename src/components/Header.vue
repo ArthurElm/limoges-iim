@@ -44,7 +44,7 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 // Magic parallax mixins
 
 $parallax-perspective: 1 !default;

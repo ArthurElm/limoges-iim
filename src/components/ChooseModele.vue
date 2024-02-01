@@ -1,6 +1,9 @@
 <template>
   <div class="slider-container">
-    <h1>Bienvenue dans l'atelier de porcelaine virtuel de Limoges !</h1>
+    <h1>
+      Bienvenue dans l'atelier de<br />
+      porcelaine virtuel de Limoges&nbsp;!
+    </h1>
     <p>Commencez par choisir l'objet de poterie que vous souhaitez créer.</p>
     <Splide :options="splideOptions" ref="splideRef">
       <SplideSlide>
@@ -117,12 +120,13 @@ img {
   background-color: #fff;
 
   h1 {
-    font-size: 32px;
-    font-weight: bold;
+    font-size: 32px !important;
+    font-weight: bold !important;
   }
 
   p {
-    font-size: 20px;
+    font-size: 20px !important;
+    color: black;
   }
 }
 

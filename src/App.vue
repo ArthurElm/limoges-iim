@@ -5,9 +5,20 @@ import Configurator from "./components/Configurator.vue";
 import LoadingPage from "./components/LoadingPage.vue";
 import ChooseModele from "./components/ChooseModele.vue";
 import Header from "./components/Header.vue";
+import Shepherd from "shepherd.js";
 import { ref, onMounted } from "vue";
 
 const loading = ref(true);
+const tutorial = ref(false);
+const modele3D = ref(); // assigned to some element in the template
+
+const tour = new Shepherd.Tour({
+  useModalOverlay: true,
+  defaultStepOptions: {
+    classes: "shepherd-theme-arrows",
+    scrollTo: false,
+  },
+});
 const modele = ref("/Tarelka.obj");
 
 onMounted(() => {
@@ -15,10 +26,111 @@ onMounted(() => {
   setTimeout(() => {
     loading.value = false;
   }, 2000);
+
+  setTimeout(() => {
+    startTutorial();
+  }, 2100);
 });
+
+const startTutorial = () => {
+  //step 1
+  tour.addStep({
+    id: "discover-limoges",
+    arrow: true,
+    title: "Découvrez Limoges",
+    text: "Envie d'en savoir plus sur la magnifique ville de Limoges et son histoire ? Cliquez ici pour découvrir et explorer cette ville captivante.",
+    attachTo: {
+      element: ".logo-limoges",
+      on: "right",
+    },
+    tetherOptions: {
+      target: ".inner",
+    },
+    buttons: [
+      {
+        text: "Passer le guide",
+        action: tour.cancel,
+        classes: "skip-button",
+      },
+      {
+        text: "Suivant",
+        action: tour.next,
+        classes: "main-button px-8 py-3 ",
+      },
+    ],
+  });
+  //step 2
+  tour.addStep({
+    id: "actions-buttons-step",
+    title: "Capturer, enregistrer, acheter",
+    text: "Vous pouvez, via ces actions, donner vie à votre création.",
+    attachTo: {
+      element: ".actions-buttons",
+      on: "top",
+    },
+    buttons: [
+      {
+        text: "Passer le guide",
+        action: tour.cancel,
+        classes: "skip-button",
+      },
+      {
+        text: "Suivant",
+        action: tour.next,
+        classes: "main-button px-8 py-3 ",
+      },
+    ],
+  });
+
+  //step 3
+  tour.addStep({
+    id: "buy-pottery",
+    title: "Acheter",
+    text: "Cliquez sur le bouton 'Vers le Panier' pour finaliser votre achat et voir votre poterie prendre forme dans le monde réel.",
+    attachTo: {
+      element: ".cart-button",
+      on: "left",
+    },
+    buttons: [
+      {
+        text: "Passer le guide",
+        action: tour.cancel,
+        classes: "skip-button",
+      },
+      {
+        text: "Suivant",
+        action: tour.next,
+        classes: "main-button px-8 py-3",
+      },
+    ],
+  });
+
+  //step 4
+  tour.addStep({
+    id: "choose-pattern",
+    title: "Choisir un motif",
+    text: "Vous pouvez modifier le motif de votre poterie à votre guise.",
+    attachTo: {
+      element: ".slider",
+      on: "left",
+    },
+    buttons: [
+      {
+        text: "C'est parti !",
+        action: tour.complete,
+        classes: "main-button px-8 py-3",
+      },
+    ],
+  });
+};
 
 const sendModele = (path) => {
   modele.value = path;
+  modele3D.value.scrollIntoView({ behavior: "smooth" });
+  if (!tutorial.value) {
+    tutorial.value = true;
+    tour.start();
+  }
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -61,13 +173,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   <div class="px-12 py-12" v-else>
     <!-- Landing -->
-    <Header />
+    <!-- <Header /> -->
 
     <div class="main">
-      <div class="flex justify-center items-center">
+      <div class="flex justify-center items-center mb-10">
         <ChooseModele @send-modele="sendModele" />
       </div>
-      <div class="flex justify-between items-center mb-8">
+      <div class="flex justify-between items-center mb-8" ref="modele3D">
         <LogoLimoges />
         <div>
           <MainButton class="cart-button" svgFileName="cart" :buttonState="2"
@@ -78,7 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <!-- 3D object & patterns -->
       <div class="h-[65vh] relative configurator" style="overflow-y: hidden">
         <!-- 3D object & patterns -->
-        <Configurator :modele="modele" />
+        <Configurator :modele="modele" id="configurator" />
       </div>
       <div class="actions-buttons pt-8 w-4/6 m-auto flex justify-center">
         <MainButton svgFileName="capture" :buttonState="2">Capturer</MainButton>
@@ -92,124 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
   </div>
 </template>
-<script>
-import Shepherd from "shepherd.js";
 
-export default {
-  data() {
-    return {
-      tour: null,
-    };
-  },
-  methods: {
-    startTutorial() {
-      const tour = new Shepherd.Tour({
-        useModalOverlay: true,
-        defaultStepOptions: {
-          classes: "shepherd-theme-arrows",
-          scrollTo: false,
-        },
-      });
-      //step 1
-      tour.addStep({
-        id: "discover-limoges",
-        arrow: true,
-        title: "Découvrez Limoges",
-        text: "Envie d'en savoir plus sur la magnifique ville de Limoges et son histoire ? Cliquez ici pour découvrir et explorer cette ville captivante.",
-        attachTo: {
-          element: ".logo-limoges",
-          on: "right",
-        },
-        tetherOptions: {
-          target: ".inner",
-        },
-        buttons: [
-          {
-            text: "Passer le guide",
-            action: tour.cancel,
-            classes: "skip-button",
-          },
-          {
-            text: "Suivant",
-            action: tour.next,
-            classes: "main-button px-8 py-3 ",
-          },
-        ],
-      });
-      //step 2
-      tour.addStep({
-        id: "actions-buttons-step",
-        title: "Capturer, enregistrer, acheter",
-        text: "Vous pouvez, via ces actions, donner vie à votre création.",
-        attachTo: {
-          element: ".actions-buttons",
-          on: "top",
-        },
-        buttons: [
-          {
-            text: "Passer le guide",
-            action: tour.cancel,
-            classes: "skip-button",
-          },
-          {
-            text: "Suivant",
-            action: tour.next,
-            classes: "main-button px-8 py-3 ",
-          },
-        ],
-      });
-
-      //step 3
-      tour.addStep({
-        id: "buy-pottery",
-        title: "Acheter",
-        text: "Cliquez sur le bouton 'Vers le Panier' pour finaliser votre achat et voir votre poterie prendre forme dans le monde réel.",
-        attachTo: {
-          element: ".cart-button",
-          on: "left",
-        },
-        buttons: [
-          {
-            text: "Passer le guide",
-            action: tour.cancel,
-            classes: "skip-button",
-          },
-          {
-            text: "Suivant",
-            action: tour.next,
-            classes: "main-button px-8 py-3",
-          },
-        ],
-      });
-
-      //step 4
-      tour.addStep({
-        id: "choose-pattern",
-        title: "Choisir un motif",
-        text: "Vous pouvez modifier le motif de votre poterie à votre guise.",
-        attachTo: {
-          element: ".slider",
-          on: "left",
-        },
-        buttons: [
-          {
-            text: "C'est parti !",
-            action: tour.complete,
-            classes: "main-button px-8 py-3",
-          },
-        ],
-      });
-
-      tour.start();
-    },
-  },
-  mounted() {
-    setTimeout(() => {
-      this.startTutorial();
-    }, 2000);
-  },
-};
-</script>
 <style scoped lang="scss">
 .loadinbgPage {
   position: fixed;
