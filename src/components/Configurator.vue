@@ -135,6 +135,7 @@ const initThreeJS = () => {
     antialias: true,
     canvas: canvasRef.value,
     alpha: true,
+    preserveDrawingBuffer   : true
   });
   controls = new OrbitControls(camera, renderer.domElement);
   controls.update();

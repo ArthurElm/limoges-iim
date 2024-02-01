@@ -7,6 +7,7 @@ body {
   background-color: #f7f7ff;
   background-image: radial-gradient(#bfbfbf 0.4px, #eeeeee 0.4px);
   background-size: 8px 8px;
+  scroll-behavior: smooth;
   font-family: "Work Sans", sans-serif;
 }
 
@@ -28,7 +29,7 @@ body {
   display: none;
 }
 
-.button-state-2:hover {
+.button-state-2:hover, .button-state-3:hover  {
   background-position: left bottom;
 }
 

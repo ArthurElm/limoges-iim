@@ -1,5 +1,5 @@
 <template>
-  <div class="slider-container">
+  <div class="slider-container w-full">
     <h1>
       Bienvenue dans l'atelier de<br />
       porcelaine virtuel de Limoges&nbsp;!
@@ -113,8 +113,7 @@ img {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 40px;
-  max-width: 90%;
+  gap: 20px;
   margin: 0 auto;
   padding: 80px 50px;
   background-color: #fff;
@@ -125,8 +124,9 @@ img {
   }
 
   p {
-    font-size: 20px !important;
+    font-size:1rem !important;
     color: black;
+    font-weight: 300;
   }
 }
 
