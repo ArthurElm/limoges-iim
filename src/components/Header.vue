@@ -44,17 +44,15 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 // Magic parallax mixins
 
 $parallax-perspective: 1 !default;
-$parallax-element: "body" !default;
-$parallax-ios: true !default;
+$parallax-element: ".container" !default;
 
 @mixin parallax-init(
   $perspective: $parallax-perspective,
-  $element: $parallax-element,
-  $parallax-ios: $parallax-ios
+  $element: $parallax-element
 ) {
   @if $element == "body" {
     html,
@@ -67,14 +65,9 @@ $parallax-ios: true !default;
     }
   }
   #{$element} {
-    overflow: auto;
+    overflow-y: auto;
     perspective: $perspective * 1px;
     transform-style: preserve-3d;
-    // Allows for smooth scrolling but disables parallax effects.
-    @if $parallax-ios == false {
-      -webkit-overflow-scrolling: touch;
-    }
-    // Preserve 3D
     &,
     * {
       transform-style: preserve-3d;
@@ -93,7 +86,7 @@ $primary: #00368d;
 @include parallax-init;
 
 .container {
-  height: 3300px;
+  height: 1100px;
   :nth-child(1) {
     @include parallax(-0.4);
     top: 250px;
@@ -101,17 +94,17 @@ $primary: #00368d;
   }
   :nth-child(2) {
     @include parallax(0.2);
-    top: 200px;
+    top: 260px;
     left: 400px;
   }
   :nth-child(3) {
     @include parallax(0.3);
-    top: 400px;
+    top: 475px;
     left: 500px;
   }
   :nth-child(4) {
     @include parallax(0.1);
-    top: 500px;
+    top: 575px;
     left: 400px;
   }
   :nth-child(5) {
@@ -155,6 +148,9 @@ $primary: #00368d;
   > * {
     position: absolute;
   }
+}
+.container::-webkit-scrollbar {
+  width: 0; // Hide the scrollbar
 }
 
 h1,
