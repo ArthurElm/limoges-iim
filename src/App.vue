@@ -29,7 +29,7 @@ onMounted(() => {
 
   setTimeout(() => {
     startTutorial();
-  }, 2100);
+  }, 2200);
 });
 
 const startTutorial = () => {

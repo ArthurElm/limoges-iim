@@ -8,14 +8,14 @@
     <Splide :options="splideOptions" ref="splideRef">
       <SplideSlide>
         <img
-          src="../assets/slider/texture3.jpg"
+          src="../assets/slider/plate-slider.png"
           width="auto"
           height="auto"
           alt="Objet de poterie 1"
         />
       </SplideSlide>
       <SplideSlide>
-        <img src="../assets/slider/texture2.jpg" alt="Objet de poterie 2" />
+        <img src="../assets/slider/mug-slider.png" alt="Objet de poterie 2" />
       </SplideSlide>
       <!-- Ajoutez autant de SplideSlide que nécessaire pour vos images -->
     </Splide>
