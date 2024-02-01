@@ -94,10 +94,9 @@ $primary: #00368d;
 
 .container {
   height: 3300px;
-
   :nth-child(1) {
     @include parallax(-0.4);
-    top: 200px;
+    top: 250px;
     left: 100px;
   }
   :nth-child(2) {
@@ -127,7 +126,7 @@ $primary: #00368d;
   }
   :nth-child(7) {
     @include parallax(-1);
-    top: 400px;
+    top: 450px;
     left: 1000px;
   }
   :nth-child(8) {
@@ -176,7 +175,6 @@ h2 {
 
 p {
   font-size: 1em !important;
-  @include parallax(0.2);
-  color: #fff;
+  color: #00368d;
 }
 </style>

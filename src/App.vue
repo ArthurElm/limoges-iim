@@ -253,7 +253,8 @@ document.addEventListener("DOMContentLoaded", () => {
   />
   
   <div class="px-12 py-12" v-else>
-
+          <!-- Landing -->
+          <Header/>
     <div class="main">
       <div class="flex justify-center items-center mb-10">
         <ChooseModele @send-modele="sendModele" />
