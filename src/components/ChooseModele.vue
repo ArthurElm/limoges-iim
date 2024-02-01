@@ -115,6 +115,7 @@ img {
   text-align: center;
   gap: 20px;
   margin: 0 auto;
+  max-width: 90%;
   padding: 80px 50px;
   background-color: #fff;
 
