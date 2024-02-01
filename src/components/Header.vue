@@ -172,7 +172,6 @@ h1 {
 h2 {
   font-size: 4em !important;
   @include parallax(0.2);
-  color: #fff;
 }
 
 p {
