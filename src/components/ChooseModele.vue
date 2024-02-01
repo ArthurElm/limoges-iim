@@ -72,11 +72,6 @@ img {
   }
 }
 
-h1,
-p {
-  color: #fff;
-}
-
 .splide__arrow {
   cologround-color: #0d57ce;
   color: white;
@@ -119,7 +114,7 @@ p {
   max-width: 90%;
   margin: 0 auto;
   padding: 80px 50px;
-  border: 1px solid #0d57ce;
+  background-color: #fff;
 
   h1 {
     font-size: 32px;
