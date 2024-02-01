@@ -27,6 +27,7 @@ body {
 
 .button-state-2 .button-text {
   display: none;
+  padding-left: 10px;
 }
 
 .button-state-2:hover, .button-state-3:hover  {
