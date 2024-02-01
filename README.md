@@ -51,7 +51,7 @@ In our virtual pottery workshop, pick a 3D pottery object, add themes, and explo
    npm run dev
   ```
 
-#### Compiles and minifies for production
+#### 📁 Compiles and minifies for production
 ```
 npm run build
 ```
